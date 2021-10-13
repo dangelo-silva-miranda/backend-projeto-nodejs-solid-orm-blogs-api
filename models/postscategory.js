@@ -1,3 +1,11 @@
+/*
+  Material consultado sobre allowNull e unique
+  https://sequelize.org/master/manual/validations-and-constraints.html
+
+  Material consultado sobre foreignKey e otherKey
+  https://sequelize.org/master/manual/advanced-many-to-many.html
+  https://dev.to/projectescape/the-comprehensive-sequelize-cheatsheet-3m1m
+*/
 const PostsCategory = (sequelize, _DataTypes) => {
   const postsCategory = sequelize.define('PostsCategory',
     {},
