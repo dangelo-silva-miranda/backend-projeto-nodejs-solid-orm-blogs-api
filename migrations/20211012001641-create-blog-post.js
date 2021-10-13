@@ -13,12 +13,12 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       title: {
-        /* allowNull: false, */
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       content: {
-        /* allowNull: false, */
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       userId: {
         type: Sequelize.INTEGER,

@@ -1,8 +1,12 @@
+/*
+  Material consultado sobre allowNull e unique
+  https://sequelize.org/master/manual/validations-and-constraints.html
+*/
 const User = (sequelize, DataTypes) => {
   const user = sequelize.define('User', {
-    displayName: DataTypes.STRING,
-    email: DataTypes.STRING,
-    password: DataTypes.STRING,
+    displayName: { type: DataTypes.STRING, allowNull: false },
+    email: { type: DataTypes.STRING, allowNull: false, unique: true },
+    password: { type: DataTypes.STRING, allowNull: false },
     image: DataTypes.STRING,
   }, {
     timestamps: false,

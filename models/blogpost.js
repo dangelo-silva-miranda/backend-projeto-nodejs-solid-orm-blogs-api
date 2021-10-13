@@ -4,9 +4,9 @@
 */
 const BlogPost = (sequelize, DataTypes) => {
   const blogPost = sequelize.define('BlogPost', {
-    title: { type: DataTypes.STRING/* , allowNull: false  */ },
-    content: { type: DataTypes.STRING/* , allowNull: false  */ },
-    userId: { type: DataTypes.INTEGER, foreignKey: true },
+    title: { type: DataTypes.STRING, allowNull: false },
+    content: { type: DataTypes.STRING, allowNull: false },
+    userId: { type: DataTypes.INTEGER, allowNull: false, foreignKey: true },
   }, {
     updatedAt: 'updated',
     createdAt: 'published',

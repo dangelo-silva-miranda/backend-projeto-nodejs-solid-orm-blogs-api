@@ -1,6 +1,10 @@
+/*
+  Material consultado sobre allowNull e unique
+  https://sequelize.org/master/manual/validations-and-constraints.html
+*/
 const Category = (sequelize, DataTypes) => {
   const category = sequelize.define('Category', {
-    name: DataTypes.STRING,
+    name: { type: DataTypes.STRING, allowNull: false },
   }, {
     timestamps: false,
   });
