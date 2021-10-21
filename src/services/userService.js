@@ -1,6 +1,7 @@
 const { StatusCodes } = require('http-status-codes');
 const jwt = require('jsonwebtoken');
 const { User } = require('../models');
+const { userDataSchema } = require('./schemas');
 
 const userEmailExists = async (email) => {
   // Verifica se o e-mail já existe no DB
@@ -19,6 +20,12 @@ const createToken = ({ id, email }) => {
 };
 
 const createUser = async ({ displayName, email, password, image = '' }) => {
+  const { error } = userDataSchema.validate({ displayName, email, password, image });
+  if (error) { // error.isJoi indentifica se o erro foi do tipo Joi
+    const { message } = error.details[0];    
+    return { code: StatusCodes.BAD_REQUEST, message };
+  }
+
   const emailExists = await userEmailExists(email);
   if (emailExists) {
     return { code: StatusCodes.CONFLICT, message: 'User already registered' };
