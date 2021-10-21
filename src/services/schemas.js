@@ -7,10 +7,15 @@ const Joi = require('joi');
 
 const id = Joi.number().integer().positive();
 const text = Joi.string();
+/*
+  Material consultado sobre validar email com Joi Library
+  https://stackoverflow.com/a/61589351
+*/
+
 const userDataSchema = Joi.object().keys({
   id,
   displayName: text.min(8),
-  email: text.email().required(),
+  email: text.email({ minDomainAtoms: 2 }).required(),
   password: text.length(6).required(),
   image: text,
 });
