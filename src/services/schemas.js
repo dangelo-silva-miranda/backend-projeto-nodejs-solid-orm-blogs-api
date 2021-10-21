@@ -15,6 +15,12 @@ const userDataSchema = Joi.object().keys({
   image: text,
 });
 
+const categoryDataSchema = Joi.object().keys({
+  id,
+  name: text.required(),
+});
+
 module.exports = {
   userDataSchema,
+  categoryDataSchema,
 };
