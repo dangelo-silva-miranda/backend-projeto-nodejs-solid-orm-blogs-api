@@ -10,6 +10,17 @@ const userEmailExists = async (email) => {
   return emailDB !== null;
 };
 
+const findUserId = async ({ email, password }) => {
+  // Verifica no DB se o e-mail existe e se o password está correto
+  const result = await User.findOne(
+    { attributes: ['id'], where: { email, password } },
+  );
+  
+  if (result) { return result.dataValues.id; }
+  
+  return null;
+};
+
 const createToken = ({ id, email }) => {
   /* expiresIn aceita o tempo de forma bem descritiva: '7d' = 7 dias, '8h' = 8 horas. */
   const jwtConfig = { expiresIn: '7d', algorithm: 'HS256' };
@@ -37,6 +48,23 @@ const createUser = async ({ displayName, email, password, image = '' }) => {
   return { code: StatusCodes.CREATED, token };
 };
 
+const loginUser = async ({ email, password }) => {
+  const { error } = userDataSchema.validate({ email, password });
+  if (error) { // error.isJoi indentifica se o erro foi do tipo Joi
+    const { message } = error.details[0];    
+    return { code: StatusCodes.BAD_REQUEST, message };
+  }
+
+  const id = await findUserId({ email, password });
+  if (!id) {
+    return { code: StatusCodes.BAD_REQUEST, message: 'Invalid fields' };
+  }
+
+  const token = createToken({ id, email });
+  return { code: StatusCodes.CREATED, token };
+};
+
 module.exports = {
   createUser,
+  loginUser,
 };
