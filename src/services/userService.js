@@ -61,7 +61,7 @@ const loginUser = async ({ email, password }) => {
   }
 
   const token = createToken({ id, email });
-  return { code: StatusCodes.CREATED, token };
+  return { code: StatusCodes.OK, token };
 };
 
 module.exports = {
