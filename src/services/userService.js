@@ -50,7 +50,7 @@ const createUser = async ({ displayName, email, password, image = '' }) => {
 
 const loginUser = async ({ email, password }) => {
   const { error } = userDataSchema.validate({ email, password });
-  if (error) { // error.isJoi indentifica se o erro foi do tipo Joi
+  if (error) { // error.isJoi indentifica se o erro foi tipo Joi
     const { message } = error.details[0];    
     return { code: StatusCodes.BAD_REQUEST, message };
   }
