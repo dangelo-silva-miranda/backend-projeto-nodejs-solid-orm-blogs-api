@@ -27,8 +27,14 @@ const blogPostDataSchema = Joi.object().keys({
   categoryIds: Joi.array().items(Joi.number()).min(1).required(),
 });
 
+const postsCategoryDataSchema = Joi.object().keys({
+  postId: id,
+  categoryId: id,
+});
+
 module.exports = {
   userDataSchema,
   categoryDataSchema,
   blogPostDataSchema,
+  postsCategoryDataSchema,
 };
