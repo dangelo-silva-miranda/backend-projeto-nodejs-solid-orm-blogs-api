@@ -29,7 +29,8 @@ const blogPostDataSchema = Joi.object().keys({
   id,
   title: text.required(),
   content: text.required(),
-  categoryIds: Joi.array().items(Joi.number()).min(1).required(),
+  userId: id.required(),
+  categoryIds: Joi.array().items(id).min(1).required(),
 });
 
 const postsCategoryDataSchema = Joi.object().keys({
