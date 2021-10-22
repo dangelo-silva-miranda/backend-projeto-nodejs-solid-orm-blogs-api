@@ -81,11 +81,11 @@ const findAllUsers = async () => {
   https://sequelize.org/master/class/lib/model.js~Model.html#static-method-findByPk
 */
 const findUserByPk = async ({ id }) => {
-  const { error } = userDataSchema.validate({ id });
-  if (error) { // error.isJoi indentifica se o erro foi tipo Joi
-    const { message } = error.details[0];    
-    return { code: StatusCodes.BAD_REQUEST, message };
-  }
+  // const { error } = userDataSchema.validate({ id });
+  // if (error) { // error.isJoi indentifica se o erro foi tipo Joi
+  //   const { message } = error.details[0];    
+  //   return { code: StatusCodes.BAD_REQUEST, message };
+  // }
 
   const user = await User.findByPk(id, { attributes: { exclude: ['password'] } });
   if (!user) { return { code: StatusCodes.NOT_FOUND, message: 'User does not exist' }; }
