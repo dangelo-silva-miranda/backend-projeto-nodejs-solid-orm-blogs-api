@@ -8,6 +8,8 @@ userRouter.post('/', userController.createUser);
 
 userRouter.get('/', [validateAuth], userController.findAllUsers);
 
+userRouter.get('/:id', [validateAuth], userController.findUserByPk);
+
 module.exports = {
   userRouter,
 };
