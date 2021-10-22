@@ -1,11 +1,12 @@
 const express = require('express');
 const categoryController = require('../controllers/categoryController');
+const { validateAuth } = require('../middlewares/auth');
 
 const categoryRouter = express.Router();
 
-categoryRouter.post('/', categoryController.createCategory);
+categoryRouter.post('/', [validateAuth], categoryController.createCategory);
 
-categoryRouter.get('/', categoryController.findAllCategories);
+categoryRouter.get('/', [validateAuth], categoryController.findAllCategories);
 
 module.exports = {
   categoryRouter,
