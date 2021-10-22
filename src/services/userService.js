@@ -64,7 +64,16 @@ const loginUser = async ({ email, password }) => {
   return { code: StatusCodes.OK, token };
 };
 
+const findAllUsers = async () => {
+  const users = await User.findAll({
+      attributes: { exclude: ['password'] },
+  });
+
+  return { code: StatusCodes.OK, users };
+};
+
 module.exports = {
   createUser,
   loginUser,
+  findAllUsers,
 };
