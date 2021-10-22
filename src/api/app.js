@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const { userRouter } = require('../routers/userRouter');
 const { loginRouter } = require('../routers/loginRouter');
+const { categoryRouter } = require('../routers/categoryRouter');
 
 const app = express();
 
@@ -21,5 +22,8 @@ app.use('/user', userRouter);
 
 /* Todas as rotas com /login/<alguma-coisa> entram aqui e vão para o roteador */
 app.use('/login', loginRouter);
+
+/* Todas as rotas com /categories/<alguma-coisa> entram aqui e vão para o roteador */
+app.use('/categories', categoryRouter);
 
 module.exports = app;
