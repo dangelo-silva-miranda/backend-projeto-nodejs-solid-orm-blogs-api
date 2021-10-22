@@ -8,12 +8,19 @@ const createCategory = async ({ name }) => {
     const { message } = error.details[0];    
     return { code: StatusCodes.BAD_REQUEST, message };
   }
-  
+
   const { dataValues: category } = await Category.create({ name });
 
   return { code: StatusCodes.CREATED, category };
 };
 
+const findAllCategories = async () => {
+  const categories = await Category.findAll();
+
+  return { code: StatusCodes.OK, categories };
+};
+
 module.exports = {
   createCategory,
+  findAllCategories,
 };
