@@ -64,6 +64,10 @@ const loginUser = async ({ email, password }) => {
   return { code: StatusCodes.OK, token };
 };
 
+/*
+  Material consultado sobre como remover alguns atributos
+  https://sequelize.org/master/manual/model-querying-basics.html#specifying-attributes-for-select-queries
+*/
 const findAllUsers = async () => {
   const users = await User.findAll({
       attributes: { exclude: ['password'] },
