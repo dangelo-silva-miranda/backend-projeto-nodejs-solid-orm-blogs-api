@@ -83,6 +83,8 @@ const findAllUsers = async () => {
 const findUserByPk = async ({ id }) => {
   const user = await User.findByPk(id, { attributes: { exclude: ['password'] } });
 
+  if (!user) { return { code: StatusCodes.NOT_FOUND, message: 'User does not exist' }; }
+
   return { code: StatusCodes.OK, user };
 };
 
