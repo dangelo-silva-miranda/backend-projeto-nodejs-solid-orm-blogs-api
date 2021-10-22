@@ -76,8 +76,19 @@ const findAllUsers = async () => {
   return { code: StatusCodes.OK, users };
 };
 
+/*
+  Material consultado sobre options de findByPk
+  https://sequelize.org/master/class/lib/model.js~Model.html#static-method-findByPk
+*/
+const findUserByPk = async ({ id }) => {
+  const user = await User.findByPk(id, { attributes: { exclude: ['password'] } });
+
+  return { code: StatusCodes.OK, user };
+};
+
 module.exports = {
   createUser,
   loginUser,
   findAllUsers,
+  findUserByPk,
 };
