@@ -20,8 +20,8 @@ const loginUser = async (req, res) => {
   return res.status(code).json({ token });
 };
 
-const findAllUsers = async (req, res) => {
-  const { code, users } = await userService.findAllUsers(req.body);
+const findAllUsers = async (_req, res) => {
+  const { code, users } = await userService.findAllUsers();
 
   return res.status(code).json(users);
 };
