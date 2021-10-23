@@ -16,7 +16,7 @@ const BlogPost = (sequelize, DataTypes) => {
     blogPost.belongsTo(models.User, { as: 'user', foreignKey: 'userId' });
 
 /*     blogPost.belongsToMany(models.Category, {
-      as: 'categories', through: 'PostsCategories', foreignKey: 'postId', otherKey: 'categoryId' }); */
+      as: 'categories', through: 'PostsCategory', foreignKey: 'postId', otherKey: 'categoryId' }); */
   };
 
   return blogPost;
