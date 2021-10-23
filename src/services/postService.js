@@ -1,5 +1,5 @@
 const { StatusCodes } = require('http-status-codes');
-const { BlogPost, PostsCategory, Category } = require('../models');
+const { BlogPost, PostsCategory, Category, User } = require('../models');
 const { blogPostDataSchema } = require('./schemas');
 
 /*
@@ -75,9 +75,30 @@ const createPost = async ({ title, content, userId, categoryIds }) => {
   return { code: StatusCodes.CREATED, post };
 };
 
+/*
+  Material consultado sobre ocultar dados da tabela de junção
+  https://github.com/sequelize/sequelize/issues/2541
+  https://stackoverflow.com/a/53010796
+  https://stackoverflow.com/questions/47961046/sequelize-returns-join-table-in-query
+  https://sequelize.org/master/class/lib/model.js~Model.html#static-method-findAll
+*/
 const findAllPosts = async () => {
-  const posts = await BlogPost.findAll();
-
+  const posts = await BlogPost.findAll({
+    include: [
+      { 
+        model: User, 
+        as: 'user', 
+      },
+      {
+        model: Category,
+        as: 'categories',
+        through: {
+          attributes: [],
+        },
+      },
+    ],
+  });
+  
   return { code: StatusCodes.OK, posts };
 };
 
