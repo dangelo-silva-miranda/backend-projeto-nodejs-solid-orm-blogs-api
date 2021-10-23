@@ -75,6 +75,13 @@ const createPost = async ({ title, content, userId, categoryIds }) => {
   return { code: StatusCodes.CREATED, post };
 };
 
+const findAllPosts = async () => {
+  const posts = await BlogPost.findAll();
+
+  return { code: StatusCodes.OK, posts };
+};
+
 module.exports = {
   createPost,
+  findAllPosts,
 };
